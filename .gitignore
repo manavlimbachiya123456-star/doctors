@@ -1,0 +1,21 @@
+# Dependencies
+node_modules
+frontend/node_modules
+frontend/auth/node_modules
+backend/node_modules
+
+# Environment files
+.env
+frontend/.env
+frontend/auth/.env
+backend/.env
+
+# Build output
+dist
+build
+
+# Logs
+*.log
+
+# VS Code
+.vscode

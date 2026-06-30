@@ -1,0 +1,184 @@
+.auth-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#eef6ff,#dcecff);
+    padding:40px 20px;
+}
+
+.auth-card{
+    width:100%;
+    max-width:450px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.auth-card h2{
+    text-align:center;
+    color:#16355b;
+    font-family:"Lora",serif;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.auth-card .subtitle{
+    text-align:center;
+    color:#64748b;
+    margin-bottom:30px;
+    line-height:1.6;
+    font-size:15px;
+}
+
+.auth-card .form-group{
+    margin-bottom:20px;
+}
+
+.auth-card .form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#334155;
+    font-size:15px;
+}
+
+.auth-card .form-group input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    outline:none;
+    transition:.3s;
+    font-size:15px;
+}
+
+.auth-card .form-group input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+}
+
+.auth-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.auth-btn:hover{
+    background:#1d4ed8;
+}
+
+.auth-card .auth-footer{
+    margin-top:22px;
+    text-align:center;
+    color:#64748b;
+    font-size:15px;
+}
+
+.auth-card .auth-footer span{
+    color:#2563eb;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.auth-card .auth-footer span:hover{
+    text-decoration:underline;
+}
+
+/* ---------------- Tablet ---------------- */
+
+@media (max-width: 992px){
+
+    .auth-container{
+        padding:30px 18px;
+    }
+
+    .auth-card{
+        max-width:500px;
+        padding:35px;
+    }
+
+    .auth-card h2{
+        font-size:30px;
+    }
+}
+
+/* ---------------- Mobile ---------------- */
+
+@media (max-width: 576px){
+
+    .auth-container{
+        padding:20px 15px;
+        align-items:center;
+    }
+
+    .auth-card{
+        width:100%;
+        padding:28px 22px;
+        border-radius:16px;
+    }
+
+    .auth-card h2{
+        font-size:26px;
+    }
+
+    .auth-card .subtitle{
+        font-size:14px;
+        margin-bottom:22px;
+    }
+
+    .auth-card .form-group{
+        margin-bottom:18px;
+    }
+
+    .auth-card .form-group label{
+        font-size:14px;
+    }
+
+    .auth-card .form-group input{
+        padding:13px;
+        font-size:14px;
+    }
+
+    .auth-btn{
+        padding:14px;
+        font-size:15px;
+    }
+
+    .auth-card .auth-footer{
+        font-size:14px;
+    }
+}
+
+/* -------- Small Phones (320px - 400px) -------- */
+
+@media (max-width:400px){
+
+    .auth-card{
+        padding:22px 18px;
+    }
+
+    .auth-card h2{
+        font-size:22px;
+    }
+
+    .auth-card .subtitle{
+        font-size:13px;
+    }
+
+    .auth-card .form-group input{
+        padding:12px;
+    }
+
+    .auth-btn{
+        font-size:14px;
+    }
+}
