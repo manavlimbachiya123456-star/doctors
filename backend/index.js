@@ -19,6 +19,8 @@ const Report = require("./models/Report");
 const upload = require("./middleware/upload");
 const generatePatientSummary = require("./utils/generateSummary");
 
+const PORT = process.env.PORT || 3000;
+
 //exppress
 const app = express();
 
@@ -359,6 +361,6 @@ app.post("/patients/:id/summary", verifyToken, async (req, res) => {
 
 
 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
