@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from "axios";
+import api from "../api/axios";
 import '../styles/auth.css'
 
 const Login = () => {
@@ -13,16 +13,21 @@ const Login = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const res = await axios.post("http://localhost:3000/login", form);
+    const res = await api.post("/login", form);
 
     localStorage.setItem('token', res.data.token)       // save token
     localStorage.setItem('user', JSON.stringify(res.data.user)) // save user
 
     navigate("/dashboard");
   } catch (err) {
-    console.log(err);
-    alert("Login Failed");
-  }
+  console.log(err);
+
+  alert(
+    err.response?.data?.message ||
+    JSON.stringify(err.response?.data) ||
+    err.message
+  );
+}
 };
 
   return (
