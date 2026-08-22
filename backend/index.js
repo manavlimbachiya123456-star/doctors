@@ -18,6 +18,9 @@ const Patient = require("./models/Patient");
 const Report = require("./models/Report");
 const upload = require("./middleware/upload");
 const generatePatientSummary = require("./utils/generateSummary");
+const axios = require("axios");
+
+const PORT = process.env.PORT || 3000;
 
 //exppress
 const app = express();
@@ -359,6 +362,53 @@ app.post("/patients/:id/summary", verifyToken, async (req, res) => {
 
 
 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+app.post("/patients/:id/chat", verifyToken, async (req, res) => {
+  try {
+    const patient = await Patient.findById(req.params.id);
+    if (!patient) return res.status(404).json({ message: "Patient not found" });
+    if (patient.doctor.toString() !== req.user.id) {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+
+    const reports = await Report.find({ patient: req.params.id })
+      .sort({ visitDate: 1 });
+
+    const { question, chatHistory } = req.body;
+    if (!question) return res.status(400).json({ message: "Question is required" });
+
+    // Forward to Python RAG service
+    const ragResponse = await axios.post("http://localhost:8000/chat", {
+      patient: {
+        name: patient.name,
+        age: patient.age,
+        gender: patient.gender,
+        bloodGroup: patient.bloodGroup,
+        patientId: patient.patientId,
+        contact: patient.contact,
+        pdfPath: patient.pdfPath || "",
+      },
+      reports: reports.map(r => ({
+        visitDate: r.visitDate,
+        diagnosis: r.diagnosis,
+        symptoms: r.symptoms,
+        allergies: r.allergies,
+        currentMedications: r.currentMedications,
+        labResults: r.labResults,
+        notes: r.notes,
+      })),
+      question,
+      chatHistory: chatHistory || [],
+    });
+
+    res.status(200).json({ answer: ragResponse.data.answer });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.response?.data?.detail || err.message });
+  }
+});
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });

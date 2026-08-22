@@ -19,6 +19,7 @@ const patientSchema = new mongoose.Schema(
     // AI-generated summary, stored after the doctor requests it
     aiSummary: { type: String, default: "" },
     aiSummaryGeneratedAt: { type: Date, default: null },
+    pdfPath: { type: String, default: "" },
   },
   { timestamps: true }
 );
