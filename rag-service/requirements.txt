@@ -3,8 +3,10 @@ uvicorn
 langchain
 langchain-google-genai
 langchain-community
+langchain-chroma
 chromadb
 pymupdf
 requests
 python-dotenv
 pydantic
+langchain-text-splitters
